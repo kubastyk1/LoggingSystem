@@ -9,22 +9,58 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    String id;
+    private String id;
 
     @Column(name = "type")
-    String type;
+    private String type;
 
     @Column(name = "host")
-    String host;
+    private String host;
 
     @Column(name = "duration")
-    int duration;
+    private int duration;
 
     @Column(name = "alert")
-    boolean alert;
+    private boolean alert;
 
-    String state;
-    long timestamp;
+    private String state;
+    private long timestamp;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public boolean isAlert() {
+        return alert;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public void setAlert(boolean alert) {
+        this.alert = alert;
+    }
 
     @Override
     public String toString() {
