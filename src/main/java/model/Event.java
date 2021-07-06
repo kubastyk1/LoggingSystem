@@ -25,4 +25,17 @@ public class Event {
 
     String state;
     long timestamp;
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id='" + id + '\'' +
+                ", type='" + type + '\'' +
+                ", host='" + host + '\'' +
+                ", duration=" + duration +
+                ", alert=" + alert +
+                ", state='" + state + '\'' +
+                ", timestamp=" + timestamp +
+                '}';
+    }
 }
