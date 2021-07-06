@@ -1,0 +1,36 @@
+[
+  {
+    "id": "A",
+    "state": "STARTED",
+    "type": "APPLICATION_LOG",
+    "host": "HOST-1",
+    "timestamp": 1491377495213
+  },
+  {
+    "id": "B",
+    "state": "STARTED",
+    "timestamp": 1491377495216
+  },
+  {
+    "id": "C",
+    "state": "FINISHED",
+    "timestamp": 1491377495215
+  },
+  {
+    "id": "A",
+    "state": "FINISHED",
+    "type": "APPLICATION_LOG",
+    "host": "HOST-1",
+    "timestamp": 1491377495216
+  },
+  {
+    "id": "C",
+    "state": "STARTED",
+    "timestamp": 1491377495213
+  },
+ {
+   "id": "B",
+   "state": "FINISHED",
+   "timestamp": 1491377495226
+ }
+]
