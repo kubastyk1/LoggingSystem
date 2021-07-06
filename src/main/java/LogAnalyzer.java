@@ -1,20 +1,20 @@
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import model.Event;
+import services.DatabaseService;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class LogAnalyzer {
 
     private static final int DURATION_LIMIT_MS = 4;
-    private ConcurrentHashMap<String, Event> eventMap = new ConcurrentHashMap<String, Event>();
+    private ConcurrentHashMap<String, Event> eventMap = new ConcurrentHashMap();
+    private DatabaseService<Event> databaseService = new DatabaseService();
 
     public void analyzeLogFromFile(String filePath) {
         try (
@@ -41,6 +41,8 @@ public class LogAnalyzer {
             int duration = (int) Math.abs(savedTimestamp - currentTimestamp);
             event.setDuration(duration);
             event.setAlert(duration > DURATION_LIMIT_MS);
+
+            databaseService.save(event);
         }
         eventMap.put(event.getId(), event);
     }
