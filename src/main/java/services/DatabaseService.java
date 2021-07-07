@@ -1,8 +1,11 @@
 package services;
 
 import config.HibernateUtil;
+import model.Event;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.util.List;
 
 public class DatabaseService<T> {
 
@@ -16,5 +19,14 @@ public class DatabaseService<T> {
         Transaction transaction = session.beginTransaction();
         session.save(record);
         transaction.commit();
+    }
+
+    public void printRecords(String tableName) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<Event> students = session.createQuery("from " + tableName, Event.class).list();
+            students.forEach(System.out::println);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

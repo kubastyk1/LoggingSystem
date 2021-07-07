@@ -9,7 +9,7 @@
         <property name="hibernate.connection.driver_class">org.hsqldb.jdbc.JDBCDriver</property>
         <property name="hibernate.connection.username">sa</property>
         <property name="hibernate.connection.password"></property>
-        <property name="hibernate.connection.url">jdbc:hsqldb:hsql://localhost/testdb</property>
+        <property name="hibernate.connection.url">jdbc:hsqldb:file:database</property>
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
     </session-factory>
 </hibernate-configuration>

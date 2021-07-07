@@ -24,26 +24,33 @@ public class LogAnalyzer {
             reader.beginArray();
             while (reader.hasNext()) {
                 Event event = new Gson().fromJson(reader, Event.class);
-                System.out.println(event.toString());
 
-                mapNewEvent(event);
+                Event originalEvent = mapEvent(event);
+                if(originalEvent != null) {
+                    databaseService.save(event);
+                }
             }
             reader.endArray();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        databaseService.printRecords("Event");
     }
 
-    private void mapNewEvent(Event event) {
+    private Event mapEvent(Event event) {
         if(eventMap.containsKey(event.getId())) {
-            long savedTimestamp = eventMap.get(event.getId()).getTimestamp();
-            long currentTimestamp = event.getTimestamp();
-            int duration = (int) Math.abs(savedTimestamp - currentTimestamp);
-            event.setDuration(duration);
-            event.setAlert(duration > DURATION_LIMIT_MS);
-
-            databaseService.save(event);
+            updateEventInformation(event);
         }
-        eventMap.put(event.getId(), event);
+
+        return eventMap.put(event.getId(), event);
+    }
+
+    private void updateEventInformation(Event event) {
+        long savedTimestamp = eventMap.get(event.getId()).getTimestamp();
+        long currentTimestamp = event.getTimestamp();
+        int duration = (int) Math.abs(savedTimestamp - currentTimestamp);
+        event.setDuration(duration);
+        event.setAlert(duration > DURATION_LIMIT_MS);
     }
 }
