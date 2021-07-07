@@ -1,5 +1,7 @@
 package model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,6 +13,7 @@ public class Event {
 
     @Id
     @Column(name = "id")
+    @NotNull
     private String id;
 
     @Column(name = "type")
@@ -20,9 +23,11 @@ public class Event {
     private String host;
 
     @Column(name = "duration")
+    @NotNull
     private int duration;
 
     @Column(name = "timeLimitExceeded")
+    @NotNull
     private boolean timeLimitExceeded;
 
     private String state;
