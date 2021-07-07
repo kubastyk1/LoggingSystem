@@ -20,7 +20,7 @@ public class LogAnalyzer {
     private ConcurrentHashMap<String, Event> eventMap = new ConcurrentHashMap();
     private DatabaseService<Event> databaseService = new DatabaseService();
 
-    public void analyzeLogFromFile(String filePath) {
+    public ConcurrentHashMap<String, Event> analyzeLogFromFile(String filePath) {
 
         ExecutorService executorService = Executors.newFixedThreadPool(THREAD_POOL_NUMBER);
 
@@ -52,6 +52,8 @@ public class LogAnalyzer {
         }
 
         databaseService.printRecords(Event.TABLE_NAME);
+
+        return eventMap;
     }
 
     private Event mapEvent(Event event) {
@@ -66,6 +68,6 @@ public class LogAnalyzer {
         long currentTimestamp = event.getTimestamp();
         int duration = (int) Math.abs(savedTimestamp - currentTimestamp);
         event.setDuration(duration);
-        event.setAlert(duration > event.DURATION_LIMIT_MS);
+        event.setTimeLimitExceeded(duration > event.DURATION_LIMIT_MS);
     }
 }

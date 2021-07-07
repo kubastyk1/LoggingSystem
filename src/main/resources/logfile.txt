@@ -32,5 +32,10 @@
    "id": "B",
    "state": "FINISHED",
    "timestamp": 1491377495226
+ },
+ {
+   "id": "D",
+   "state": "STARTED",
+   "timestamp": 1491377495226
  }
 ]

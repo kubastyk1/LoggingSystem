@@ -22,8 +22,8 @@ public class Event {
     @Column(name = "duration")
     private int duration;
 
-    @Column(name = "alert")
-    private boolean alert;
+    @Column(name = "timeLimitExceeded")
+    private boolean timeLimitExceeded;
 
     private String state;
     private long timestamp;
@@ -44,8 +44,8 @@ public class Event {
         return duration;
     }
 
-    public boolean isAlert() {
-        return alert;
+    public boolean isTimeLimitExceeded() {
+        return timeLimitExceeded;
     }
 
     public String getState() {
@@ -60,8 +60,8 @@ public class Event {
         this.duration = duration;
     }
 
-    public void setAlert(boolean alert) {
-        this.alert = alert;
+    public void setTimeLimitExceeded(boolean timeLimitExceeded) {
+        this.timeLimitExceeded = timeLimitExceeded;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class Event {
                 ", type='" + type + '\'' +
                 ", host='" + host + '\'' +
                 ", duration=" + duration +
-                ", alert=" + alert +
+                ", alert=" + timeLimitExceeded +
                 ", state='" + state + '\'' +
                 ", timestamp=" + timestamp +
                 '}';
