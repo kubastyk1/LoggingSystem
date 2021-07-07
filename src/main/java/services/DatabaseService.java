@@ -21,12 +21,11 @@ public class DatabaseService<T> {
         transaction.commit();
     }
 
+    public List<T> getAllRecords(String tableName) {
+        return (List<T>) session.createQuery("from " + tableName, Event.class).list();
+    }
+
     public void printRecords(String tableName) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            List<Event> students = session.createQuery("from " + tableName, Event.class).list();
-            students.forEach(System.out::println);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        getAllRecords(tableName).forEach(System.out::println);
     }
 }
