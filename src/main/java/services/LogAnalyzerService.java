@@ -1,3 +1,5 @@
+package services;
+
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import model.Event;
@@ -13,7 +15,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class LogAnalyzer {
+public class LogAnalyzerService {
 
     private static final int THREAD_POOL_NUMBER = 5;
 

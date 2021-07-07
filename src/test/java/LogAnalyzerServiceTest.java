@@ -1,19 +1,21 @@
 import model.Event;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import services.LogAnalyzerService;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-class LogAnalyzerTest {
+class LogAnalyzerServiceTest {
 
     private final static String PATH = "src/main/resources/logfile.txt";
     private ConcurrentHashMap<String, Event> eventMap;
-    LogAnalyzer logAnalyzer = new LogAnalyzer();
+    LogAnalyzerService logAnalyzerService = new LogAnalyzerService();
 
     @BeforeEach
     public void beforeEach() {
-        eventMap = logAnalyzer.analyzeLogFromFile(PATH);
+        eventMap = logAnalyzerService.analyzeLogFromFile(PATH);
     }
 
     @Test
