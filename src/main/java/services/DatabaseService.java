@@ -15,7 +15,7 @@ public class DatabaseService<T> {
         this.session = HibernateUtil.getSessionFactory().openSession();
     }
 
-    public void save(T record) {
+    public synchronized void save(T record) {
         Transaction transaction = session.beginTransaction();
         session.save(record);
         transaction.commit();

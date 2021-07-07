@@ -6,6 +6,9 @@ import javax.persistence.*;
 @Table(name = "event")
 public class Event {
 
+    public static final int DURATION_LIMIT_MS = 4;
+    public static final String TABLE_NAME = "Event";
+
     @Id
     @Column(name = "id")
     private String id;
