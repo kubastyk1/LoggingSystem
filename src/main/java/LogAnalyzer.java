@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class LogAnalyzer {
 
@@ -37,8 +38,17 @@ public class LogAnalyzer {
                 });
             }
             reader.endArray();
+            executorService.shutdown();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (!executorService.awaitTermination(20, TimeUnit.SECONDS)) {
+                    databaseService.closeSession();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         databaseService.printRecords(Event.TABLE_NAME);

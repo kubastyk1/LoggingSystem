@@ -28,4 +28,8 @@ public class DatabaseService<T> {
     public void printRecords(String tableName) {
         getAllRecords(tableName).forEach(System.out::println);
     }
+
+    public void closeSession() {
+        HibernateUtil.getSessionFactory().close();
+    }
 }
