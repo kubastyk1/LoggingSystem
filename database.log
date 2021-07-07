@@ -1,0 +1,3 @@
+/*C3*/SET SCHEMA PUBLIC
+drop table if exists event CASCADE 
+create table event (id varchar(255) not null, duration integer, host varchar(255), state varchar(255), timeLimitExceeded boolean, timestamp bigint not null, type varchar(255), primary key (id))
